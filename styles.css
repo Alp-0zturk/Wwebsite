@@ -30,7 +30,7 @@ nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
-    opacity: 50%;
+    opacity: 65%;
 }
 nav ul li a {
     color: #fff;
@@ -95,22 +95,12 @@ p {
     font-size: 24px;
     text-align: center;
 }
-.exp {
-    text-align: left;
-    font-size: 20px;
-    opacity: 70%;
-    padding-bottom: -500rem;
-}
-#projects a {
-    text-align: justify;
-    font-size: 20px;
-}
-#projects p {
-    margin-top: -1rem;
-    text-align: justify;
-}
 
 /* Products */
+.products{
+    display: flex;
+    margin: 5%;
+}
 .products a{
     text-align: justify;
     margin-top: 2rem;
@@ -122,22 +112,23 @@ p {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 1%;
 }
 .product img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-#links img {
+.links img {
     max-width: 5%;
     max-height: 5%;
     display: center;
     margin-left: 47.5%;
     padding: 10px;
 }
-#links img:hover {
+.links img:hover {
     background-color: #ededed;
 }
 
