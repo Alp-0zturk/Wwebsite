@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderers Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=STIX+Two+Math&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Wanderer</div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="home">Home</button>
+                <button class="nav-tab" data-tab="gallery">Gallery</button>
+                <button class="nav-tab" data-tab="releases">Releases</button>
+                <button class="nav-tab" data-tab="shop">Shop</button>
+            </div>
+            <div class="nav-auth">
+                <div id="auth-guest" class="auth-guest">
+                    <button type="button" class="auth-btn auth-btn--ghost" id="sign-in-btn">Sign In</button>
+                    <button type="button" class="auth-btn auth-btn--primary" id="register-btn">Register</button>
+                </div>
+                <div id="auth-user" class="auth-user hidden">
+                    <span class="auth-user-name" id="auth-user-name"></span>
+                    <button type="button" class="auth-btn auth-btn--ghost" id="sign-out-btn">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <!-- Home Tab -->
+        <section id="home" class="tab-content active">
+            <div class="home-container">
+                <div class="artist-hero">
+                    <div class="artist-image-container">
+                        <div class="artist-image-placeholder">
+                            <img src="gallery/w.jpg" alt="Wanderers Web artist portrait" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                    </div>
+                    <div class="artist-info">
+                        <p class="artist-bio">
+                            Wandering echoes from the abyss
+                        </p>
+                        <div class="social-links">
+                            <a href="https://wanderer0.bandcamp.com" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/b.png" alt="Bandcamp logo" width="24" height="24">
+                                <span>Bandcamp</span>
+                            </a>
+                            <a href="https://www.patreon.com/n7m3" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/p.png" alt="Patreon logo" width="24" height="24">
+                                <span>Patreon</span>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCNaOL1VNHczEyGzD_j9E3bg" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/y.png" alt="YouTube logo" width="24" height="24">
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://open.spotify.com/artist/6p5KzyoiWjQZQnrZQR2Tej?si=h5Ke58l9RwOTmXVVLemJ9Q" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/s.png" alt="Spotify logo" width="24" height="24">
+                                <span>Spotify</span>
+                            </a>
+                            <a href="https://soundcloud.com/wanderer0" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/so.png" alt="SoundCloud logo" width="24" height="24">
+                                <span>SoundCloud</span>
+                            </a>
+                            <a href="https://www.instagram.com/wanderer_music_/" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src="logos/i.png" alt="Instagram logo" width="24" height="24">
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Tab -->
+        <section id="gallery" class="tab-content">
+            <div class="gallery-container">
+                <div class="gallery-bg-video-stack" aria-hidden="true" data-video-src="gallery/stars.mp4"></div>
+                <section class="spacer"></section>
+                
+                <section class="gallery">
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.0" data-layer="1" style="top: 10%; left: 10%; width: 30vw;">
+                        <img src="gallery/lbt.png" alt="NIGHT RUSH cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.0" data-layer="1" style="top: 50%; left: 60%; width: 28vw;">
+                        <img src="gallery/w10.png" alt="PROJECT 4 cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.0" data-layer="1" style="top: 90%; left: 15%; width: 32vw;">
+                        <img src="gallery/albewm.jpg" alt="PROJECT 7 cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.0" data-layer="1" style="top: 120%; left: 62%; width: 27vw;">
+                        <img src="gallery/w.jpg" alt="W artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.8" data-layer="2" style="top: 145%; left: 18%; width: 29vw;">
+                        <img src="gallery/w2.jpg" alt="W2 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-1" data-speed="1.8" data-layer="2" style="top: 170%; left: 55%; width: 31vw;">
+                        <img src="gallery/w6.jpg" alt="W6 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="1.5" data-layer="3" style="top: 30%; left: 55%; width: 35vw;">
+                        <img src="gallery/thumbnail.jpg" alt="FUTURE cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="1.5" data-layer="3" style="top: 70%; left: 8%; width: 25vw;">
+                        <img src="gallery/w4.png" alt="PROJECT 5 cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="1.5" data-layer="3" style="top: 125%; left: 8%; width: 26vw;">
+                        <img src="gallery/PARTD.jpg" alt="PARTD artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="1" data-layer="1" style="top: 240%; left: 48%; width: 34vw;">
+                        <img src="gallery/ac2.jpg" alt="AC2 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="1.5" data-layer="3" style="top: 175%; left: 12%; width: 30vw;">
+                        <img src="gallery/albumcov.jpg" alt="Album cover artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-2" data-speed="2.5" data-layer="6" style="top: 270%; left: 25%; width: 28vw;">
+                        <img src="gallery/arm.jpg" alt="ARM artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="1.8" data-layer="4" style="top: 200%; left: 15%; width: 30vw;">
+                        <img src="gallery/qd.jpg" alt="PROJECT 9 cover">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="2" data-layer="5" style="top: 95%; left: 68%; width: 24vw;">
+                        <img src="gallery/Screenshot 2025-12-10 at 19.01.51.png" alt="Screenshot artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="2" data-layer="5" style="top: 125%; left: 6%; width: 29vw;">
+                        <img src="gallery/beyond nowhere.jpg" alt="Beyond Nowhere artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="1.8" data-layer="4" style="top: 155%; left: 66%; width: 26vw;">
+                        <img src="gallery/w10.jpg" alt="W10 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="2.5" data-layer="6" style="top: 250%; left: 16%; width: 28vw;">
+                        <img src="gallery/w4.jpg" alt="W4 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="2.2" data-layer="6" style="top: 300%; left: 54%; width: 30vw;">
+                        <img src="gallery/w7.jpg" alt="W7 artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+
+                    <div class="gallery__item gallery__item--layer-3" data-speed="2.5" data-layer="6" style="top: 245%; left: 62%; width: 27vw;">
+                        <img src="gallery/wx.jpg" alt="WX artwork">
+                        <div class="item__info">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="spacer"></section>
+            </div>
+        </section>
+
+        <!-- Releases Tab -->
+        <section id="releases" class="tab-content">
+            <div class="releases-container">
+                <h2 class="section-title">Releases</h2>
+                <div class="releases-grid">
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--part-d" src="gallery/PARTD.jpg" alt="Part D cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Billion Endings [Album part D]</h3>
+                            <p class="release-year">2030</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--part-b" src="gallery/ac2.jpg" alt="Part C cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Dreadful Puppet Show [Album part C]</h3>
+                            <p class="release-year">2030</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--part-b" src="gallery/albumcov.jpg" alt="Part B cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Wanderer's theme [Album part B]</h3>
+                            <p class="release-year">2029</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--wanderers-theme" src="gallery/albumcov.jpg" alt="Wanderer's Theme cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Wanderer's Theme [Album part A]</h3>
+                            <p class="release-year">2028</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img" src="gallery/lbt.png" alt="Mondo Grosso - Labyrinth (Wanderer remix) cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Mondo Grosso - Labyrinth (Wanderer remix)</h3>
+                            <p class="release-year">2024</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--mental-decay" src="gallery/thumbnail.jpg" alt="Mental Decay [EP] cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Mental Decay [EP]</h3>
+                            <p class="release-year">2025</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                    <div class="release-item">
+                        <div class="release-cover">
+                            <img class="release-cover-img release-cover-img--final-chapter" src="gallery/albewm.jpg" alt="Final Chapter (Album) cover">
+                        </div>
+                        <div class="release-info">
+                            <h3 class="release-title">Final Chapter (Album)</h3>
+                            <p class="release-year">2024</p>
+                            <a href="#" class="bandcamp-link" target="_blank">Listen on Bandcamp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Tab -->
+        <section id="shop" class="tab-content">
+            <div class="shop-container">
+                <h2 class="section-title">Shop</h2>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <span>Hoodie</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Artist Hoodie</h3>
+                            <p class="shop-item-price">$45.00</p>
+                            <button class="add-to-cart-btn" data-item="Hoodie" data-price="45.00">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <span>T-Shirt</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Artist T-Shirt</h3>
+                            <p class="shop-item-price">$25.00</p>
+                            <button class="add-to-cart-btn" data-item="T-Shirt" data-price="25.00">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <span>Cup</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Artist Mug</h3>
+                            <p class="shop-item-price">$15.00</p>
+                            <button class="add-to-cart-btn" data-item="Mug" data-price="15.00">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <span>Stickers</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Sticker Pack</h3>
+                            <p class="shop-item-price">$8.00</p>
+                            <button class="add-to-cart-btn" data-item="Sticker Pack" data-price="8.00">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <span>Vinyl</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Vinyl Record</h3>
+                            <p class="shop-item-price">$30.00</p>
+                            <button class="add-to-cart-btn" data-item="Vinyl Record" data-price="30.00">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="shop-item">
+                        <div class="shop-image-placeholder" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                            <span>Poster</span>
+                        </div>
+                        <div class="shop-item-info">
+                            <h3 class="shop-item-title">Limited Poster</h3>
+                            <p class="shop-item-price">$20.00</p>
+                            <button class="add-to-cart-btn" data-item="Limited Poster" data-price="20.00">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="auth-modal" aria-hidden="true">
+        <div class="auth-modal-overlay" id="auth-modal-overlay"></div>
+        <div class="auth-modal-content" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+            <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="Close">&times;</button>
+            <h2 class="auth-modal-title" id="auth-modal-title">Sign In</h2>
+            <p class="auth-modal-subtitle" id="auth-modal-subtitle">Welcome back</p>
+
+            <form id="sign-in-form" class="auth-form">
+                <label class="auth-label" for="sign-in-email">Email</label>
+                <input class="auth-input" type="email" id="sign-in-email" name="email" required autocomplete="email">
+
+                <label class="auth-label" for="sign-in-password">Password</label>
+                <input class="auth-input" type="password" id="sign-in-password" name="password" required autocomplete="current-password">
+
+                <p class="auth-error hidden" id="sign-in-error"></p>
+                <button type="submit" class="auth-btn auth-btn--primary auth-btn--full">Sign In</button>
+            </form>
+
+            <form id="register-form" class="auth-form hidden">
+                <label class="auth-label" for="register-name">Name</label>
+                <input class="auth-input" type="text" id="register-name" name="name" required autocomplete="name">
+
+                <label class="auth-label" for="register-email">Email</label>
+                <input class="auth-input" type="email" id="register-email" name="email" required autocomplete="email">
+
+                <label class="auth-label" for="register-password">Password</label>
+                <input class="auth-input" type="password" id="register-password" name="password" required minlength="6" autocomplete="new-password">
+
+                <label class="auth-label" for="register-confirm">Confirm Password</label>
+                <input class="auth-input" type="password" id="register-confirm" name="confirm" required minlength="6" autocomplete="new-password">
+
+                <p class="auth-error hidden" id="register-error"></p>
+                <button type="submit" class="auth-btn auth-btn--primary auth-btn--full">Create Account</button>
+            </form>
+
+            <div class="auth-divider"><span>or</span></div>
+            <div id="google-auth-btn" class="google-auth-btn"></div>
+
+            <p class="auth-switch">
+                <span id="auth-switch-text">Don't have an account?</span>
+                <button type="button" class="auth-switch-btn" id="auth-switch-btn">Register</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div id="cart" class="cart">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" id="cart-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+        </svg>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
