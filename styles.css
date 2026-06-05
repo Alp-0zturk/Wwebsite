@@ -338,7 +338,7 @@ body {
 #home {
     position: relative;
     min-height: calc(100vh - 80px);
-    background-image: url("gallery/Screenshot%202025-12-10%20at%2019.01.51.png");
+    background-image: none;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -346,10 +346,11 @@ body {
  
 #home::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(10, 10, 10, 0.45);
     pointer-events: none;
+    z-index: 0;
 }
  
 #home .home-container {
