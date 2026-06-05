@@ -35,12 +35,12 @@
     
     <main class="main-content">
         <!-- Home Tab -->
-        <section id="home" class="tab-content active">
-            <div class="home-container" style="position: relative;">
-                <video class="home-video-bg" autoplay muted loop playsinline style="opacity: 0.5; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; pointer-events: none;">
-                    <source src="bg/snow.mp4" type="video/mp4">
-                </video>
-                <div class="artist-hero" style="position: relative; z-index: 1;">
+        <section id="home" class="tab-content active" style="position: relative; overflow: hidden;">
+            <video class="home-video-bg" autoplay muted loop playsinline style="opacity: 0.5; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; pointer-events: none;">
+                <source src="bg/snow.mp4" type="video/mp4">
+            </video>
+            <div class="home-container" style="position: relative; z-index: 1;">
+                <div class="artist-hero" style="position: relative; z-index: 2;">
                     <div class="artist-image-container">
                         <div class="artist-image-placeholder">
                             <img src="gallery/w.jpg" alt="Wanderers Web artist portrait" style="width:100%; height:100%; object-fit:cover;">
