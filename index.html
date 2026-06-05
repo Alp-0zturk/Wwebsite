@@ -37,6 +37,9 @@
         <!-- Home Tab -->
         <section id="home" class="tab-content active">
             <div class="home-container">
+                <video class="home-video-bg" autoplay muted loop playsinline style="opacity: 0.3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                    <source src="bg/snow.mp4" type="video/mp4">
+                </video>
                 <div class="artist-hero">
                     <div class="artist-image-container">
                         <div class="artist-image-placeholder">
@@ -428,6 +431,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
+    <script>
+        // Set snow video playback speed to 0.5x
+        const homeVideo = document.querySelector('.home-video-bg');
+        if (homeVideo) {
+            homeVideo.playbackRate = 0.5;
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
