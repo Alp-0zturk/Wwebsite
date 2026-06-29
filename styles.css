@@ -339,7 +339,6 @@ body {
     position: relative;
     min-height: calc(100vh - 80px);
     background-image: url("gallery/Screenshot%202025-12-10%20at%2019.01.51.png");
-    padding-top: -100px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -347,10 +346,11 @@ body {
  
 #home::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(10, 10, 10, 0.45);
     pointer-events: none;
+    z-index: 1;
 }
  
 #home .home-container {
@@ -445,7 +445,10 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 30px;
     transition: all 0.3s ease;
+    font-family: 'Playfair Display', 'STIX Two Math', serif;
     font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
  
 .social-link:hover {
@@ -790,7 +793,93 @@ body {
 .add-to-cart-btn:active {
     transform: translateY(0);
 }
- 
+
+/* Live Viewer Counter */
+.home-viewer-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+}
+
+.live-viewer-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0;
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+}
+
+.live-viewer-counter:hover {
+    opacity: 1;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    background: #f5576c;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: live-pulse 2s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 87, 108, 0.5); }
+    50%       { box-shadow: 0 0 0 5px rgba(245, 87, 108, 0); }
+}
+
+.live-viewer-text {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.viewer-countries {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0;
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+}
+
+.viewer-countries:hover {
+    opacity: 1;
+}
+
+.viewer-countries-label {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+}
+
+.viewer-countries-flags {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.viewer-country-flag {
+    width: 18px;
+    height: 13px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.viewer-country-flag:hover {
+    transform: scale(1.15);
+}
+
 /* Cart */
 .cart-icon {
     position: fixed;
