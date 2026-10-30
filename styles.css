@@ -342,20 +342,42 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    isolation: isolate;
 }
- 
+
+/* Full-size so Safari's autoplay policy treats it as visible,
+   but layered beneath the opaque canvas that shows the composite. */
+.home-video-src {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.home-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 #home::before {
     content: '';
-    position: fixed;
+    position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, 0.45);
+    background: rgba(10, 10, 10, 0.15);
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
 }
- 
+
 #home .home-container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
  
 .home-container {

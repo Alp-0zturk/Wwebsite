@@ -35,12 +35,13 @@
     
     <main class="main-content">
         <!-- Home Tab -->
-        <section id="home" class="tab-content active" style="position: relative;">
-            <video class="home-video-bg" autoplay muted loop playsinline style="opacity: 0.9; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; pointer-events: none;">
+        <section id="home" class="tab-content active">
+            <video class="home-video-src" autoplay muted loop playsinline aria-hidden="true">
                 <source src="bg/snow.mp4" type="video/mp4">
             </video>
-            <div class="home-container" style="position: relative; z-index: 1;">
-                <div class="artist-hero" style="position: relative; z-index: 2;">
+            <canvas class="home-video-bg" aria-hidden="true"></canvas>
+            <div class="home-container">
+                <div class="artist-hero">
                     <div class="artist-image-container">
                         <div class="artist-image-placeholder">
                             <img src="gallery/w.jpg" alt="Wanderers Web artist portrait" style="width:100%; height:100%; object-fit:cover;">
@@ -446,7 +447,7 @@
     
     <script>
         // Set snow video playback speed to 0.5x
-        const homeVideo = document.querySelector('.home-video-bg');
+        const homeVideo = document.querySelector('.home-video-src');
         if (homeVideo) {
             homeVideo.playbackRate = 0.5;
         }

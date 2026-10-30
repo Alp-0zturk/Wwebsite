@@ -883,3 +883,75 @@ if (document.readyState === 'loading') {
         }, 800);
     });
 })();
+// Composite the home background image and snow video on a canvas.
+// Canvas 'screen' compositing makes the video's black backdrop invisible,
+// which mix-blend-mode on a <video> element does not do reliably (Safari).
+function initHomeSnowBackground() {
+    const section = document.getElementById('home');
+    const video = document.querySelector('.home-video-src');
+    const canvas = document.querySelector('.home-video-bg');
+    if (!section || !video || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const bgImage = new Image();
+    bgImage.src = 'gallery/Screenshot 2025-12-10 at 19.01.51.png';
+
+    function tryPlay() {
+        if (!video.paused) return;
+        const attempt = video.play();
+        if (attempt && attempt.catch) attempt.catch(() => {});
+    }
+    tryPlay();
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    document.addEventListener('click', tryPlay, { once: true });
+    document.addEventListener('touchstart', tryPlay, { once: true });
+
+    const SNOW_OPACITY = 0.5;
+    const IMAGE_OPACITY = 0.25;
+
+    function drawCover(source, sourceWidth, sourceHeight, width, height) {
+        if (!sourceWidth || !sourceHeight) return;
+        const scale = Math.max(width / sourceWidth, height / sourceHeight);
+        const drawWidth = sourceWidth * scale;
+        const drawHeight = sourceHeight * scale;
+        ctx.drawImage(source, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+    }
+
+    function render() {
+        requestAnimationFrame(render);
+        if (section.offsetParent === null) return; // home tab hidden
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const width = section.clientWidth;
+        const height = section.clientHeight;
+        if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+        }
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#0a0a0a';
+        ctx.fillRect(0, 0, width, height);
+        if (bgImage.complete && bgImage.naturalWidth) {
+            ctx.globalAlpha = IMAGE_OPACITY;
+            drawCover(bgImage, bgImage.naturalWidth, bgImage.naturalHeight, width, height);
+        }
+
+        if (video.readyState >= 2) {
+            ctx.globalCompositeOperation = 'screen';
+            ctx.globalAlpha = SNOW_OPACITY;
+            drawCover(video, video.videoWidth, video.videoHeight, width, height);
+        }
+    }
+
+    render();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHomeSnowBackground);
+} else {
+    initHomeSnowBackground();
+}
