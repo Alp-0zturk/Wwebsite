@@ -772,37 +772,29 @@ if (document.readyState === 'loading') {
     applyDoubleStruckAfterFont();
 }
 
-// Live Viewer Counter + Country Flags
+// Live Viewer Counter + Country Flags (real presence via /api/presence)
 (function initLiveViewerCounter() {
     const countEl = document.getElementById('live-viewer-count');
     const flagsEl = document.getElementById('viewer-countries-flags');
+    const statsEl = document.querySelector('.home-viewer-stats');
     if (!countEl) return;
 
-    const COUNTRY_POOL = [
-        { code: 'US', name: 'United States' },
-        { code: 'GB', name: 'United Kingdom' },
-        { code: 'DE', name: 'Germany' },
-        { code: 'FR', name: 'France' },
-        { code: 'JP', name: 'Japan' },
-        { code: 'CA', name: 'Canada' },
-        { code: 'AU', name: 'Australia' },
-        { code: 'BR', name: 'Brazil' },
-        { code: 'IN', name: 'India' },
-        { code: 'MX', name: 'Mexico' },
-        { code: 'IT', name: 'Italy' },
-        { code: 'ES', name: 'Spain' },
-        { code: 'NL', name: 'Netherlands' },
-        { code: 'SE', name: 'Sweden' },
-        { code: 'PL', name: 'Poland' },
-        { code: 'KR', name: 'South Korea' },
-        { code: 'NO', name: 'Norway' },
-        { code: 'FI', name: 'Finland' },
-        { code: 'NZ', name: 'New Zealand' },
-        { code: 'AR', name: 'Argentina' }
-    ];
+    const HEARTBEAT_MS = 10000;
 
-    const countryByCode = new Map(COUNTRY_POOL.map(c => [c.code, c]));
-    let userCountryCode = null;
+    // One id per tab, kept across reloads of that tab
+    let sessionId;
+    try {
+        sessionId = sessionStorage.getItem('viewer-session-id');
+        if (!sessionId) {
+            sessionId = (crypto.randomUUID && crypto.randomUUID()) ||
+                (Date.now().toString(36) + Math.random().toString(36).slice(2));
+            sessionStorage.setItem('viewer-session-id', sessionId);
+        }
+    } catch {
+        sessionId = Date.now().toString(36) + Math.random().toString(36).slice(2);
+    }
+
+    let userCountry = null;
 
     async function fetchUserCountry() {
         try {
@@ -811,76 +803,42 @@ if (document.readyState === 'loading') {
             const data = await res.json();
             const code = data.country_code?.toUpperCase();
             if (code && code.length === 2) {
-                userCountryCode = code;
-                if (!countryByCode.has(code)) {
-                    countryByCode.set(code, { code, name: data.country_name || code });
-                }
+                userCountry = { code, name: data.country_name || code };
             }
         } catch {
-            // Geo lookup unavailable — simulated countries still render
+            // Geo lookup unavailable; the viewer is counted without a flag
         }
     }
 
-    function pickCountries(viewerCount) {
-        const maxFlags = 6;
-        const targetCount = Math.max(1, Math.min(maxFlags, Math.ceil(viewerCount / 4) + 1));
-        const picked = [];
-
-        if (userCountryCode && countryByCode.has(userCountryCode)) {
-            picked.push(countryByCode.get(userCountryCode));
+    function render(snapshot) {
+        if (statsEl) statsEl.style.display = '';
+        countEl.textContent = snapshot.count;
+        if (flagsEl) {
+            flagsEl.innerHTML = (snapshot.countries || []).map(({ code, name }) =>
+                `<img class="viewer-country-flag" src="https://flagcdn.com/w20/${code.toLowerCase()}.png" alt="${name}" title="${name}" width="18" height="13" loading="lazy">`
+            ).join('');
         }
-
-        const pool = COUNTRY_POOL.filter(c => c.code !== userCountryCode);
-        while (picked.length < targetCount && pool.length > 0) {
-            const index = Math.floor(Math.random() * pool.length);
-            picked.push(pool.splice(index, 1)[0]);
-        }
-
-        return picked;
     }
 
-    function renderCountryFlags(viewerCount) {
-        if (!flagsEl) return;
-
-        const countries = pickCountries(viewerCount);
-        flagsEl.innerHTML = countries.map(({ code, name }) =>
-            `<img class="viewer-country-flag" src="https://flagcdn.com/w20/${code.toLowerCase()}.png" alt="${name}" title="${name}" width="18" height="13" loading="lazy">`
-        ).join('');
-    }
-
-    // Simulate a realistic viewer count (base + small random drift)
-    let current = Math.floor(Math.random() * 18) + 7; // start 7–24
-
-    function update() {
-        const delta = Math.floor(Math.random() * 5) - 2;
-        current = Math.max(4, Math.min(35, current + delta));
-
-        countEl.style.transition = 'opacity 0.3s ease';
-        countEl.style.opacity = '0';
-        if (flagsEl) flagsEl.style.opacity = '0';
-
-        setTimeout(() => {
-            countEl.textContent = current;
-            renderCountryFlags(current);
-            countEl.style.opacity = '1';
-            if (flagsEl) flagsEl.style.opacity = '1';
-        }, 300);
+    async function heartbeat() {
+        try {
+            const res = await fetch('/api/presence', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: sessionId, country: userCountry }),
+                signal: AbortSignal.timeout(5000),
+            });
+            if (!res.ok) throw new Error('presence unavailable');
+            render(await res.json());
+        } catch {
+            // No presence backend (e.g. static hosting): hide instead of faking
+            if (statsEl) statsEl.style.display = 'none';
+        }
     }
 
     fetchUserCountry().finally(() => {
-        setTimeout(() => {
-            countEl.textContent = current;
-            renderCountryFlags(current);
-            if (flagsEl) {
-                flagsEl.style.transition = 'opacity 0.3s ease';
-            }
-
-            function scheduleNext() {
-                const delay = 6000 + Math.random() * 6000;
-                setTimeout(() => { update(); scheduleNext(); }, delay);
-            }
-            scheduleNext();
-        }, 800);
+        heartbeat();
+        setInterval(heartbeat, HEARTBEAT_MS);
     });
 })();
 // Composite the home background image and snow video on a canvas.
